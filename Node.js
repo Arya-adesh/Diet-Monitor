@@ -2,7 +2,13 @@ const mysql = require('mysql2');
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
-
+const notifier = require('node-notifier');
+const fileUpload = require("express-fileupload");
+const { Console } = require('console');
+const axios = require("axios");
+var MongoClient = require('mongodb').MongoClient;
+const fileUpload = require("express-fileupload");
+const FormData = require("form-data");
 
 
 const connection = mysql.createConnection({
