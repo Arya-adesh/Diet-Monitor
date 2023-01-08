@@ -32,24 +32,19 @@ app.post('/auth', function(request, response) {
 	let password = request.body.password;
 
 	const str="sdnjs%%5%$4322$$$sadafsbh";
-	// Ensure the input fields exists and are not empty
+	
 	if (username && password) {
-		// Execute SQL query that'll select the account from the database based on the specified username and password
+		//  SQL query that'll select the account from the database based on the specified username and password
 		connection.query('SELECT * FROM accounts WHERE username = ? AND AES_ENCRYPT(?,?)=password', [username, password,str], function(error, results, fields) {
 			// If there is an issue with the query, output the error
-			// console.log(username);
-			// console.log(password);
-			// console.log(results);
+			
 			if (error) throw error;
 			// If the account exists
 			if (results.length > 0) {
 				// Authenticate the user
 				request.session.loggedin = true;
 				request.session.username = username;
-				// document.cookie = `username=${username};expires=1800 * 1000;path=/`;
-				// response.cookie("username",username);
-				// sessionStorage.setItem("user",username);
-				// response.redirect('/table.html');
+				
 				var userN=request.session.username;
 				// run(userN);
 				console.log(userN);
@@ -68,7 +63,7 @@ app.post('/auth', function(request, response) {
 	} else {
 		notifier.notify({
 			title: 'Diet Monitor',
-			message: 'Please enter Username and Password!',
+			message: 'Wrong Username and Password!',
 			icon:'static\im6.png'
 		});
 		
