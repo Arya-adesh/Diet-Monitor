@@ -77,6 +77,77 @@ app.post('/auth', function(request, response) {
 	}
 });
 
+app.post('/reg', (req, res) => {
+	let username = req.body.username;
+	let password = req.body.password;
+//    console.log(username);
+//    console.log(password);
+	// Validate the input
+	if (password.length < 5) {
+		notifier.notify({
+			title: 'Diet Monitor',
+			message: 'Password should be atleast 5 characters long',
+			icon:'static\im6.png'
+		});
+	  }
+	else{
+
+	  // Check if password consists of numbers and letters only
+	  const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/;
+	  if (!regex.test(password)) {
+		notifier.notify({
+			title: 'Diet Monitor',
+			message: 'Password should have alphabets and numbers both',
+			icon:'static\im6.png'
+		});
+	  }
+	  else {
+	if (!username || !password) {
+	 
+		notifier.notify({
+			title: 'Diet Monitor',
+			message: 'Bad Request: Missing required fields',
+			icon:'static\im6.png'
+		});
+	}
+   else {
+	// Check if the username already exists in the database
+	connection.query(
+	  'SELECT * FROM accounts WHERE username = ?',
+	  [username],
+	  (error, results) => {
+		if (error) throw error;
+  
+		if (results.length > 0) {
+		  
+			notifier.notify({
+				title: 'Diet Monitor',
+				message: 'Conflict: User already exists',
+				icon:'static\im6.png'
+			});
+			
+		}
+        else{
+		// Create the user object
+		const user = {
+		  username,
+		  password
+		};
+        const str="sdnjs%%5%$4322$$$sadafsbh";
+		// Save the user to the database
+			connection.query('INSERT INTO accounts(username, password) values (?, AES_ENCRYPT(?,?))', [username, password,str],
+		  (error, results) => {
+			if (error) throw error;
+			req.session.loggedin = true;
+			req.session.username = username;
+			res.redirect('/quiz.html');
+			
+		  }
+		);
+		}}
+	);
+	} }}
+});
 
 
 
