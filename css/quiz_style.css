@@ -133,17 +133,6 @@ body{
     text-align: center;
 }
 
-.answer__input:checked + .answer__label{
-  border-color:#5861af;
-  color:#14152C;
-  box-shadow: 0px 0px 1px 4px rgba(88,97,175, 0.2)
-}
-
-.answer__input:checked + .answer__label .answer__tick{
-  opacity:1;
-  visibility:visible;
-}
-
 .answer__char {
     line-height: 24px;
     display: inline-block;
@@ -169,3 +158,66 @@ body{
   visibility:hidden;
 }
 
+.answer__tick path{
+  fill:#fff
+}
+.quiz__inner {
+    max-width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.quiz__step:not(.quiz__step--current){
+  visibility:hidden;
+  opacity:0;
+  display:none;
+}
+.question__emoji{
+  font-size:45px;
+  margin-bottom:15px;
+      display: inline-block;
+    margin-right: 15px;
+}
+.navigation__btn--disabled {
+    opacity: 0.4;
+}
+.submit__container {
+    margin-top: 25px;
+}
+.submit {
+    background-color: #5861af;
+    line-height: 50px;
+    display: inline-block;
+    border-radius: 25px;
+    padding: 0 15px;
+    font-size: 13px;
+    text-decoration: none;
+    color: #fff;
+    letter-spacing: 1px;
+    box-shadow: 0px 6px 11px rgba(88,97,175, 0.6);
+    min-width: 130px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.thanks__tick {
+    line-height: 50px;
+    width: 50px;
+    font-size: 25px;
+    color: #fff;
+    background-color: #5861af;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+}
+.thanks__title {
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 40px;
+}
+.thanks{
+  text-align:center;
+}
