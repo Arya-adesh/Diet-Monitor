@@ -35,6 +35,18 @@ $('.navigation__btn--right').click(function (e) {
     });
   }
   
+function keypressEvent(e){
+    let key = e.which || e.keyCode;
+
+  if(key==65 || key==66){
+    $('.quiz__step--current input[data-char="'+key+'"]').prop('checked', true).change();
+    console.log($('.quiz__step--current input[data-char="'+key+'"]'))
+   // $('.quiz__step--current input[data-char="'+key+'"] + .answer__label').change();
+  }
+}
+
+
+
   const percentage = (currentIndex * 100) / numberSteps;
   $('.progress__inner').width(percentage + '%');
   
