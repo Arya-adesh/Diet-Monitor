@@ -220,5 +220,14 @@ const UICtrl = (function(){
         }
       });
     },
+    deleteListItem: function(id){
+      const itemID = `#item-${id}`;
+      const item = document.querySelector(itemID);
+      item.remove();
+    },
+    clearInput: function(){
+      document.querySelector(UISelectors.itemNameInput).value = '';
+      document.querySelector(UISelectors.itemCaloriesInput).value = '';
+    },
   }
 })();
