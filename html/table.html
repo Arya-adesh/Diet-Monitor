@@ -103,6 +103,59 @@
   
   
   
+  new Vue({
+    el: '#app',
+    store,
+    data() {
+      return {
+        loading: false,
+        headers: [
+        {
+          text: 'Food Item',
+          align: 'left',
+          sortable: false,
+          value: 'name' },
+        { text: 'Weight(g)', value: 'weight', align: 'center' },
+        { text: 'Calories', value: 'calories', align: 'center' },
+        { text: 'Fat (g)', value: 'fat', align: 'center' },
+        { text: 'Carbs (g)', value: 'carbs', align: 'center' },
+        { text: 'Protein (g)', value: 'proteins', align: 'center' },
+        { text: 'Iron (%)', value: 'Iron', align: 'center' },
+        { text: 'K', value: 'potassium', align: 'center' },
+        { text: 'Fiber', value: 'fiber', align: 'center' },
+        { text: 'Sugar', value: 'sugar', align: 'center' },
+        { text: 'Chol(mg)', value: 'cholestrol', align: 'center' },
+        { text: 'Vitamin A(mg)', value: 'vitamin_A', align: 'center' },
+        { text: 'Vitamin C(mg)', value: 'Vitamin_C', align: 'center' }] };
+  
+  
+    },
+    watch: {
+      pagination: {
+        handler() {
+          this.loading = true;
+          this.$store.dispatch('queryItems').
+          then(result => {
+            this.loading = false;
+          });
+        },
+        deep: true } },
+  
+  
+    computed: {
+      pagination: {
+        get: function () {
+          return this.$store.getters.pagination;
+        },
+        set: function (value) {
+          this.$store.commit('setPagination', value);
+        } },
+  
+      items() {
+        return this.$store.getters.items;
+      } },
+  
+    methods: {} });
   
   
   
