@@ -149,5 +149,39 @@ app.post('/reg', (req, res) => {
 	} }}
 });
 
+app.get('/timeline', function (req, res) {
+	const date = req.query.date;
+	console.log(date);
+    var userN= req.session.username;
+	console.log(req.session.username);
+	// console.log(session.username);
+	// perform a query to select the date and description from the 'timeline' table
+	// connection.query('SELECT date, description FROM timeline as t', function (error, results, fields) {
+
+		connection.query('SELECT * FROM nutrient WHERE username = ? and date = ?',[userN, date], function(error, results) {
+	// connection.query('SELECT date, description FROM timeline as t', function (error, results, fields) {
+	  if (error) throw error;
+	  
+	  // loop through the results and print the date and description to the webpage
+	  res.send(results);
+	//   console.log(results);
+	});
+  });
+  app.get('/timeline2', function (req, res) {
+	
+	const date = req.query.date;
+    var userN= req.session.username;
+	console.log(req.session.username);
+	
+
+		connection.query('SELECT * FROM food INNER JOIN nutrient on food.date1=nutrient.date and food.hours=nutrient.hours and food.min=nutrient.min and food.sec=nutrient.sec  and food.username=nutrient.username WHERE date1 =? and food.username= ?  ', [date, userN], function(error, results) {
+	// connection.query('SELECT date, description FROM timeline as t', function (error, results, fields) {
+	  if (error) throw error;
+	  
+	  // loop through the results and print the date and description to the webpage
+	  res.send(results);
+	//   console.log(results);
+	});
+  });
 
 
