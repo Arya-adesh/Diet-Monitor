@@ -75,3 +75,64 @@ body {
   width: 100%;
   border-radius: 0 0 5px 5px;
 }
+.card .progress-container .step {
+  background-color: #2575fc;
+  height: 6px;
+  width: 33%;
+  border-radius: 0 0 0 5px;
+}
+
+h1 {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  color: #00bfc2;
+  margin: 0;
+}
+
+p {
+  margin-top: 0;
+}
+
+a {
+  color: #00CED1;
+  text-decoration: none;
+  position: relative;
+}
+a:before {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 0%;
+  border-bottom: 2px solid #00CED1;
+  transition: 0.3s;
+}
+a:hover:before {
+  width: 80%;
+}
+
+/* style for date input */
+input[type="date"] {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid gray;
+  outline: none;
+}
+
+/* style for submit button */
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* change background color of button on hover */
+button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
